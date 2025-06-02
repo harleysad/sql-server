@@ -44,7 +44,8 @@ DATA_FOLDER=your/data/folder/path
    ```
 
 3. **Connect to SQL Server**
-   - **Host:** `localhost`
+   - **Host (from host machine):** `localhost`
+   - **Host (from another container):** `sqlserver`
    - **Port:** `1433`
    - **User:** `SA`
    - **Password:** (as set in `.env`)
@@ -58,6 +59,7 @@ DATA_FOLDER=your/data/folder/path
 
 ## Notes
 - The container will restart automatically unless stopped.
+- The container hostname is set to `sqlserver` (see `container_name` in `docker-compose.yml`).
 - The healthcheck uses the default password from the example. If you change the SA password, update the healthcheck command in `docker-compose.yml` accordingly.
 - For production use, review and harden security settings.
 
