@@ -4,7 +4,6 @@ services:
     hostname: sqlserver
     image: mcr.microsoft.com/mssql/server:2025-latest
     container_name: sqlserver
-    user: "1000:1000"
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=${SA_PASSWORD}

@@ -1,5 +1,14 @@
 # SQL Server Docker Compose Setup
 
+> **⚠️ WARNING:**
+> The host directory specified by `CONTAINER_FOLDER` (used for data persistence) **must be accessible by user and group ID `10001`**, which is the user created inside the container to run SQL Server. If the directory permissions are not set correctly, SQL Server will fail to start or may not be able to write data. Ensure the folder exists and is owned by UID and GID `10001`:
+>
+> ```bash
+> sudo mkdir -p /your/host/folder/sql-server
+> sudo chown -R 10001:10001 /your/host/folder/sql-server
+> ```
+> Replace `/your/host/folder` with your actual path.
+
 This project provides a ready-to-use `docker-compose.yml` for running Microsoft SQL Server in a containerized environment. It is ideal for development, testing, and local database management.
 
 ## Features
