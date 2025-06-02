@@ -18,25 +18,29 @@ This project provides a ready-to-use `docker-compose.yml` for running Microsoft 
 The following environment variables are used in `docker-compose.yml`:
 
 - `SA_PASSWORD` (**required**): The password for the SQL Server system administrator (SA) account. Must meet SQL Server password requirements (at least 8 characters, including uppercase, lowercase, numbers, and symbols).
-- `DATA_FOLDER` (**required**): The absolute path on your host machine where SQL Server data will be persisted. This ensures your database files are not lost when the container is removed.
+- `CONTAINER_FOLDER` (**optional**): The base folder on your host machine where SQL Server data will be persisted. Defaults to `container-folder` if not set. The full path used by Docker will be `/${CONTAINER_FOLDER}/sql-server`.
 
 Create a `.env` file in this directory with the following content:
 ```env
 SA_PASSWORD=YourStrong!Passw0rd
-DATA_FOLDER=your/data/folder/path
+CONTAINER_FOLDER=your/host/folder
 ```
 - Replace `YourStrong!Passw0rd` with a strong password.
-- Set `DATA_FOLDER` to an absolute path on your host for data persistence.
+- Set `CONTAINER_FOLDER` to your preferred host directory for persistent data (or leave blank to use the default `container-folder`).
+
+#### Volumes
+The following volume is mounted in the container:
+- `/${CONTAINER_FOLDER}/sql-server:/var/opt/mssql`: Persists all SQL Server data files on your host. This ensures your database data is not lost when the container is removed or recreated.
 
 1. **Set Environment Variables**
    
    Create a `.env` file in this directory with the following content:
    ```env
    SA_PASSWORD=YourStrong!Passw0rd
-   DATA_FOLDER=your/data/folder/path
+   CONTAINER_FOLDER=your/host/folder
    ```
    - Replace `YourStrong!Passw0rd` with a strong password (required by SQL Server).
-   - Set `DATA_FOLDER` to an absolute path on your host for data persistence.
+   - Set `CONTAINER_FOLDER` to your preferred host directory for persistent data (or leave blank to use the default `container-folder`).
 
 2. **Start SQL Server**
    ```bash

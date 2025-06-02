@@ -7,6 +7,7 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=${SA_PASSWORD}
+      - CONTAINER_FOLDER=${CONTAINER_FOLDER:-container-folder}
     ports:
       - "1433:1433"
     restart: unless-stopped
@@ -16,4 +17,4 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - /${DATA_FOLDER}/sql-server:/var/opt/mssql
+      - /${CONTAINER_FOLDER}/sql-server:/var/opt/mssql
